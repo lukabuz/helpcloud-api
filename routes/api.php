@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('voulenteer', 'VoulenteerController@create');
+
+Route::get('verify/{token}', 'VoulenteerController@verify');
+Route::post('delete/request', 'VoulenteerController@requestDeletion');
+Route::get('delete/{token}', 'VoulenteerController@delete');
+
+Route::post('help', 'HelpRequestController@create');
+
+Route::get('voulenteers', 'VoulenteerController@index');
