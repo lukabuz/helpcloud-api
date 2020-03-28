@@ -23,19 +23,19 @@ class VoulenteerController extends Controller
         $query = Voulenteer::where('verification_token', null);
 
 
-        if (request()->has('country')) {
+        if (request('country') !== null) {
             $query->where('country', request('country'));
         }
 
-        if (request()->has('city')) {
+        if (request('city') !== null) {
             $query->where('city', request('country'));
         }
 
-        if (request()->has('general_location')) {
+        if (request('general_location') !== null) {
             $query->where('general_location', 'LIKE', '%' . request('general_location') . '%');
         }
 
-        if (request()->has('offers')) {
+        if (request('offers') !== null) {
             $voulenteers = [];
 
             foreach ($query->get() as $voulenteer) {
