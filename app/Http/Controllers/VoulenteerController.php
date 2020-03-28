@@ -7,6 +7,7 @@ use App\Http\Requests\CreateVoulenteerRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Voulenteer;
 use App\OfferVoulenteer;
+use App\Offer;
 use App\Mail\VerifyEmail;
 use App\Mail\DeletionEmail;
 
@@ -115,5 +116,10 @@ class VoulenteerController extends Controller
         $voulenteer->delete();
 
         return response()->json(['status' => 'success']);
+    }
+
+    public function offers()
+    {
+        return response()->json(['status'=>'success', 'offers' => Offer::all()]);
     }
 }

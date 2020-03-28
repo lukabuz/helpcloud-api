@@ -23,3 +23,4 @@ Route::get('delete/{token}', 'VoulenteerController@delete');
 Route::post('help', 'HelpRequestController@create');
 
 Route::get('voulenteers', 'VoulenteerController@index');
+Route::get('offers', 'VoulenteerController@offfers');
