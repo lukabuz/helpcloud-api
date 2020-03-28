@@ -22,6 +22,7 @@ class VoulenteerController extends Controller
     {
         $query = Voulenteer::where('verification_token', null);
 
+
         if (request()->has('country')) {
             $query->where('country', request('country'));
         }
@@ -31,7 +32,7 @@ class VoulenteerController extends Controller
         }
 
         if (request()->has('general_location')) {
-            $query->where('general_location', 'LIKE', '%' . request('country') . '%');
+            $query->where('general_location', 'LIKE', '%' . request('general_location') . '%');
         }
 
         if (request()->has('offers')) {
@@ -40,10 +41,12 @@ class VoulenteerController extends Controller
             foreach ($query->get() as $voulenteer) {
                 $ids = $voulenteer->getOfferIds();
                 if (array_intersect($ids, request('offers'))) {
-                    array_push($voulenteers, $voulenteer->get());
+                    // dd($voulenteer)
+                    array_push($voulenteers, $voulenteer);
                 };
             }
 
+            
 
             return response()->json(['status' => 'success', 'voulenteers' => $voulenteers]);
         }

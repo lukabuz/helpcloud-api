@@ -20,7 +20,7 @@ class Voulenteer extends Model
         'general_location'
     ];
     protected $hidden = [
-        'verification_token', 'deletion_token',
+        'verification_token', 'deletion_token', 'email',
     ];
 
     public function offers()
