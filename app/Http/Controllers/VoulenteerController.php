@@ -98,7 +98,7 @@ class VoulenteerController extends Controller
 
         $voulenteer->save();
 
-        return response()->json(['status' => 'success', 'voulenteer' => $voulenteer]);
+        return redirect('https://helpcloud.xyz');
     }
 
     public function requestDeletion()
