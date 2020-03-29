@@ -28,7 +28,7 @@ class VoulenteerController extends Controller
         }
 
         if (request('city') !== null) {
-            $query->where('city', request('country'));
+            $query->where('city', request('city'));
         }
 
         if (request('general_location') !== null) {

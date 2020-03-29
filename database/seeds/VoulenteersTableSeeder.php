@@ -4,6 +4,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Offer;
+use App\OfferVoulenteer;
+use App\Voulenteer;
 
 class VoulenteersTableSeeder extends Seeder
 {
@@ -15,8 +18,9 @@ class VoulenteersTableSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create();
+        $offers = Offer::all()->random(2);
 
-        DB::table('voulenteers')->insert([
+        $id = DB::table('voulenteers')->insert([
             'name' => $faker->name,
             'email' => $faker->safeEmail,
             'profession' => $faker->word,
@@ -25,5 +29,12 @@ class VoulenteersTableSeeder extends Seeder
             'general_location' => $faker->streetName,
             'description' => $faker->paragraph,
         ]);
+
+        foreach ($offers as $offer) {
+            $relation = new OfferVoulenteer;
+            $relation->offer_id = $offer->id;
+            $relation->voulenteer_id = Voulenteer::orderBy('id', 'DESC')->first()->id;
+            $relation->save();
+        }
     }
 }
