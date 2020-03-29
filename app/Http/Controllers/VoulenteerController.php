@@ -20,7 +20,7 @@ class VoulenteerController extends Controller
      */
     public function index()
     {
-        $query = Voulenteer::where('verification_token', null);
+        $query = Voulenteer::orderBy('id', 'DESC')->where('verification_token', null);
 
 
         if (request('country') !== null) {

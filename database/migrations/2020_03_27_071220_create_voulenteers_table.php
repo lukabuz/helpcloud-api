@@ -21,7 +21,7 @@ class CreateVoulenteersTable extends Migration
             $table->string('country');
             $table->string('city');
             $table->string('general_location')->nullable();
-            $table->string('description');
+            $table->longText('description');
             $table->string('verification_token')->nullable();
             $table->string('deletion_token')->nullable();
             $table->timestamps();

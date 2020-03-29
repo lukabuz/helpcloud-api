@@ -14,14 +14,16 @@ class VoulenteersTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = \Faker\Factory::create();
+
         DB::table('voulenteers')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'profession' => Str::random(10),
-            'country' => Str::random(6),
-            'city' => Str::random(4),
-            'general_location' => Str::random(10),
-            'description' => Str::random(50),
+            'name' => $faker->name,
+            'email' => $faker->safeEmail,
+            'profession' => $faker->word,
+            'country' => $faker->country,
+            'city' => $faker->city,
+            'general_location' => $faker->streetName,
+            'description' => $faker->paragraph,
         ]);
     }
 }
